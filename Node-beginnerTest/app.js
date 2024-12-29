@@ -28,23 +28,58 @@ app.get('/userform', (req, res) => {
 });
 
 app.get('/admin', (req, res) => {
-    res.render('admin.ejs');
+    connection.query(
+        'SELECT * FROM users',
+        (error, results) => {
+            console.log(results.id)
+            res.render('admin.ejs', { userTable: results });
+        }
+    );
 });
 
 app.get('/edit/:id', (req, res) => {
-    res.render('edit.ejs');
+    connection.query(
+        'SELECT * FROM users WHERE id=?',
+        [req.params.id],
+        (error, results) => {
+            //クエリ実行後の処理（アロー関数で）を記述
+            res.render('edit.ejs', { userTable: results[0] });
+        }
+    );
 });
 
 app.post('/edit/:id', (req, res) => {
-    res.render('admin.ejs');
+    connection.query(
+        'UPDATE users SET name=?,email=?,password=? WHERE id = ?',
+        [req.body.name,req.body.email,req.body.password, req.params.id],
+        (error, results) => {
+            res.redirect('/admin');
+        }
+    )
 });
 
 app.post('/delete/:id', (req, res) => {
-    res.render('admin.ejs');
+    connection.query(
+        'DELETE FROM users WHERE id=?',
+        [req.params.id],
+        (error, results) => {
+            connection.query(
+                'SELECT * FROM users',
+                (error, results) => {
+                    res.render('admin.ejs', { userTable: results });
+                }
+            );
+        })
 });
 
 app.post('/userform', (req, res) => {
-    res.render('index.ejs');
+    connection.query(
+        'INSERT INTO users(name,email,password) VALUES(?,?,?)',
+        [req.body.addName, req.body.email, req.body.password],
+        (error, results) => {
+            res.render('index.ejs');
+        }
+    );
 });
 
 app.listen(3000);

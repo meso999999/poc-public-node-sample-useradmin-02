@@ -14,32 +14,21 @@
       </tr>
     </thead>
     <tbody>
+      <% userTable.forEach((user) => { %>
       <tr>
-        <td>1</td>
-        <td>John Doe</td>
-        <td>john.doe@example.com</td>
-        <td>password123</td>
-        <td><form action="/edit/1" method="get"><input type="submit" class="edit" value="編集"></form></td>
-        <td><form action="/delete/1" method="post"><input type="submit" class="delete" value="削除"></form></td>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.password %></td>
+        <td><form action="/edit/<%= user.id %>" method="get"><input type="submit" class="edit" value="編集"></form></td>
+        <td><form action="/delete/<%= user.id %>" method="post"><input type="submit" class="delete" value="削除"></form></td>
       </tr>
-      <tr>
-        <td>2</td>
-        <td>Jane Smith</td>
-        <td>jane.smith@example.com</td>
-        <td>secure456</td>
-        <td><form action="/edit/2" method="get"><input type="submit" class="edit" value="編集"></form></td>
-        <td><form action="/delete/2" method="post"><input type="submit" class="delete" value="削除"></form></td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Michael Brown</td>
-        <td>michael.brown@example.com</td>
-        <td>mypassword789</td>
-        <td><form action="/edit/3" method="get"><input type="submit" class="edit" value="編集"></form></td>
-        <td><form action="/delete/3" method="post"><input type="submit" class="delete" value="削除"></form></td>
-      </tr>
+      <% }) %>
     </tbody>
   </table>
-  </body>
+  <div style="margin:10px;text-align: center;">
+    <button type="button" onclick="location.href='/'" style="width: 300px;">一覧に戻る</button>
+  </div>
+</body>
 
   </html>

@@ -3,14 +3,14 @@
     <div class="main">
       <div class="main_input">
         <h3>ユーザー登録</h3>
-        <form method="POST" action="/userform">
-          <div><div style="display:inline-block;margin-right: 10px; width:100px;">name </div><input name="name" type="text" style="width: 150px;"></div>
+        <form action="/userform" method="post">
+          <div><div style="display:inline-block;margin-right: 10px; width:100px;">name </div><input name="addName" type="text" style="width: 150px;"></div>
           <div><div style="display:inline-block;margin-right: 10px; width:100px;">email</div><input name="email" type="text" style="width: 150px;"></div>
           <div><div style="display:inline-block;margin-right: 10px; width:100px;">password</div><input name="password" type="password" style="width: 150px;"></div>
           <p><input type="submit" style="width: 300px;" value="登録"></p>
         </form>
         <p><button type="button" onclick="location.href='/'" style="width: 300px;">一覧に戻る</button></p>
-    </div>
+      </div>
     </div>
   </body>
 </html>

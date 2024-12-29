@@ -3,18 +3,19 @@
   <div class="main">
     <div class="main_input">
       <h3>ユーザー編集</h3>
-      <form method="POST" action="/edit/1">
+      <form method="POST" action="/edit/<%=userTable.id %>">
+        <input name="id" type="hidden" value="<%= userTable.id %>" >
         <div>
-          <div style="display:inline-block;margin-right: 10px; width:100px;">name </div><input name="name" type="text"
-            style="width: 150px;">
+          <div style="display:inline-block;margin-right: 10px; width:100px;">name </div>
+          <input name="name" type="text" style="width: 150px;" value="<%= userTable.name %>">
         </div>
         <div>
-          <div style="display:inline-block;margin-right: 10px; width:100px;">email</div><input name="email" type="text"
-            style="width: 150px;">
+          <div style="display:inline-block;margin-right: 10px; width:100px;">email</div>
+          <input name="email" type="text" style="width: 150px;" value="<%= userTable.email %>">
         </div>
         <div>
           <div style="display:inline-block;margin-right: 10px; width:100px;">password</div><input name="password"
-            type="password" style="width: 150px;">
+            type="password" style="width: 150px;" value="<%= userTable.password %>">
         </div>
         <p><input type="submit" style="width: 300px;" value="編集"></p>
       </form>
